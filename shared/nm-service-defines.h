@@ -30,6 +30,7 @@
 #define NM_DBUS_SERVICE_OPENCONNECT    "org.freedesktop.NetworkManager.openconnect"
 #define NM_DBUS_INTERFACE_OPENCONNECT  "org.freedesktop.NetworkManager.openconnect"
 #define NM_DBUS_PATH_OPENCONNECT       "/org/freedesktop/NetworkManager/openconnect"
+#define NM_DBUS_PATH_OPENCONNECT_CSD   "/org/freedesktop/NetworkManager/openconnect/Csd"
 
 #define NM_OPENCONNECT_KEY_GATEWAY "gateway"
 #define NM_OPENCONNECT_KEY_COOKIE "cookie"
@@ -48,5 +49,7 @@
 #define NM_OPENCONNECT_KEY_TOKEN_MODE "stoken_source"
 #define NM_OPENCONNECT_KEY_TOKEN_SECRET "stoken_string"
 #define NM_OPENCONNECT_KEY_REPORTED_OS "reported_os"
+
+#define NM_OPENCONNECT_HINT_TAG_CSD "x-openconnect-csd:"
 
 #endif /* __NM_SERVICE_DEFINES_H__ */

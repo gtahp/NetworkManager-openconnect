@@ -2,7 +2,7 @@ AC_PREREQ(2.52)
 
 AC_INIT(NetworkManager-openconnect,
         1.2.5,
-        https://bugzilla.gnome.org/enter_bug.cgi?product=NetworkManager,
+        https://gitlab.gnome.org/GNOME/NetworkManager-openconnect/issues,
         NetworkManager-openconnect)
 AM_INIT_AUTOMAKE([no-dist-gzip dist-xz])
 AM_MAINTAINER_MODE
@@ -18,6 +18,16 @@ AC_PROG_CC
 AM_PROG_CC_C_O
 AC_PROG_INSTALL
 AC_PROG_LIBTOOL
+
+AC_CHECK_PROG([has_file], file, yes, no)
+if test x$has_file = xno ; then
+    AC_MSG_ERROR(["file" utility not found.])
+fi
+
+AC_CHECK_PROG([has_find], find, yes, no)
+if test x$has_find = xno ; then
+    AC_MSG_ERROR(["find" utility not found.])
+fi
 
 dnl
 dnl Required headers
@@ -83,7 +93,7 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package])
 IT_PROG_INTLTOOL([0.35])
 AM_GLIB_GNU_GETTEXT
 
-PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.32)
+PKG_CHECK_MODULES(GLIB, gio-unix-2.0 glib-2.0 >= 2.32)
 GLIB_CFLAGS="$GLIB_CFLAGS -DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_32"
 
 PKG_CHECK_MODULES(LIBXML, libxml-2.0)
