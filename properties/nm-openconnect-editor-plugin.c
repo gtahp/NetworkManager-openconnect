@@ -396,8 +396,8 @@ export (NMVpnEditorPlugin *iface,
 		 "CACert=%s\n"
 		 "Protocol=%s\n"
 		 "Proxy=%s\n"
-		 "UserAgent=%s\n"
 		 "CSDEnable=%s\n"
+		 "UserAgent=%s\n"
 		 "CSDWrapper=%s\n"
 		 "ReportedOS=%s\n"
 		 "UserCertificate=%s\n"
@@ -411,8 +411,8 @@ export (NMVpnEditorPlugin *iface,
 		 /* CA Certificate */        cacert ? cacert : "",
 		 /* Protocol */              protocol ? protocol : "anyconnect",
 		 /* Proxy */                 proxy ? proxy : "",
- 		 /* UserAgent */             useragent ? useragent : "",
 		 /* Cisco Secure Desktop */  csd_enable ? "1" : "0",
+ 		 /* UserAgent */             useragent ? useragent : "",
 		 /* CSD Wrapper Script */    csd_wrapper ? csd_wrapper : "",
 		 /* Reported OS */           reported_os ? reported_os : "",
 		 /* User Certificate */      usercert ? usercert : "",

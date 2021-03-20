@@ -345,7 +345,6 @@ init_editor_plugin (OpenconnectEditor *self, NMConnection *connection, GError **
 	}
 	g_signal_connect (G_OBJECT (widget), "changed", G_CALLBACK (stuff_changed_cb), self);
 
-
 	widget = GTK_WIDGET (gtk_builder_get_object (priv->builder, "fsid_button"));
 	if (!widget)
 		return FALSE;
