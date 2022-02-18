@@ -334,6 +334,17 @@ init_editor_plugin (OpenconnectEditor *self, NMConnection *connection, GError **
 	}
 	g_signal_connect (G_OBJECT (widget), "changed", G_CALLBACK (stuff_changed_cb), self);
 
+	widget = GTK_WIDGET (gtk_builder_get_object (priv->builder, "user_agent_entry"));
+	if (!widget)
+		return FALSE;
+	gtk_size_group_add_widget (priv->group, widget);
+	if (s_vpn) {
+		value = nm_setting_vpn_get_data_item (s_vpn, NM_OPENCONNECT_KEY_USERAGENT);
+		if (value)
+			gtk_entry_set_text (GTK_ENTRY (widget), value);
+	}
+	g_signal_connect (G_OBJECT (widget), "changed", G_CALLBACK (stuff_changed_cb), self);
+
 	widget = GTK_WIDGET (gtk_builder_get_object (priv->builder, "fsid_button"));
 	if (!widget)
 		return FALSE;
@@ -449,6 +460,11 @@ update_connection (NMVpnEditor *iface,
 	str = (char *) gtk_entry_get_text (GTK_ENTRY (widget));
 	if (str && strlen (str))
 		nm_setting_vpn_add_data_item (s_vpn, NM_OPENCONNECT_KEY_PROXY, str);
+
+	widget = GTK_WIDGET (gtk_builder_get_object (priv->builder, "user_agent_entry"));
+	str = (char *) gtk_entry_get_text (GTK_ENTRY (widget));
+	if (str && strlen (str))
+		nm_setting_vpn_add_data_item (s_vpn, NM_OPENCONNECT_KEY_USERAGENT, str);
 
 	widget = GTK_WIDGET (gtk_builder_get_object (priv->builder, "fsid_button"));
 	str = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (widget))?"yes":"no";
